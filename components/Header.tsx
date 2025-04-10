@@ -1,8 +1,9 @@
-'use client'
+'use client';
 
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { useUser } from "@clerk/nextjs"
 import { Heading1 } from "lucide-react";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function Header() {
     const {user} = useUser();
@@ -16,6 +17,8 @@ export default function Header() {
                     {`'s`} Space
                 </h1>
             )}
+
+            <Breadcrumbs />
 
             <div>
                 <SignedOut>
