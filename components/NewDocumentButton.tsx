@@ -15,8 +15,13 @@ export default function NewDocumentButton() {
     startTransition(async () =>{
       //create a new document
 
-      const {docId} = await createNewDocument();
-      router.push(`/doc/${docId}`)
+      try {
+        const {docId} = await createNewDocument();
+        router.push(`/doc/${docId}`)
+        
+      } catch (error) {
+        router.push("https://intimate-dolphin-11.accounts.dev/sign-in?redirect_url=http%3A%2F%2Flocalhost%3A3000%2F");
+      }
     })
 
   };

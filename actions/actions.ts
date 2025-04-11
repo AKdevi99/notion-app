@@ -9,8 +9,9 @@ export async function createNewDocument(){
     const {sessionClaims} = await auth();
 
     if (!sessionClaims) {
-        return Response.redirect("https://intimate-dolphin-11.clerk.accounts.dev/sign-in", 302);
+        throw new Error("Unauthorized");
       }
+      
       
     //create a new document
 
