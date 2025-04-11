@@ -8,7 +8,10 @@ export async function createNewDocument(){
 
     const {sessionClaims} = await auth();
 
-    if (!sessionClaims) throw new Error("Unauthorized");
+    if (!sessionClaims) {
+        return Response.redirect("https://intimate-dolphin-11.clerk.accounts.dev/sign-in", 302);
+      }
+      
     //create a new document
 
     const docCollectionRef = adminDb.collection("documents");

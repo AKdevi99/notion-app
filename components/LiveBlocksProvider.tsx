@@ -17,7 +17,7 @@ function LiveBlocksProvider({children}:{
     }
   return (
     <LiveblocksProvider
-    authEndpoint={'/auth-endpoint'}
+    authEndpoint={'/src/api/liveblocks-auth'}
     // publicApiKey={process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY}
     throttle={16}
     >
