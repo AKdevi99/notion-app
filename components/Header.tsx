@@ -10,7 +10,9 @@ export default function Header() {
 
 
     return(
+        
         <div className="flex items-center justify-between p-5 bg-black text-white">
+        
             {user && (
                 <h1>
                     {user?.firstName}
