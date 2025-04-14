@@ -10,6 +10,7 @@ import useOwner from '@/lib/useOwner';
 import DeleteDocument from "./DeleteDocument";
 import InviteUser from './InviteUser';
 import ManageUsers from './ManageUsers';
+import Avatars from './Avatars';
 
 
 function Document({id}:{id:string}) {
@@ -71,6 +72,7 @@ function Document({id}:{id:string}) {
             <ManageUsers />
 
             {/* Avatars */}
+            <Avatars />
         </div>
 
         <hr className='pb-10'/>
