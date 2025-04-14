@@ -106,3 +106,32 @@ export async function inviteUserToDocument(roomId:string, email:string){
     }
 
 }
+
+export async function removeUserFromDocument(roomId:string,userId:string){
+    const {sessionClaims} = await auth();
+
+    if (!sessionClaims) {
+        throw new Error("Unauthorized");};
+
+    console.log("removeUserFromDocument",roomId,userId);
+
+
+        try {
+            await adminDb
+            .collection("users")
+            .doc(userId)
+            .collection("rooms")
+            .doc(roomId)
+            .delete()
+    
+            return {success:true}
+            
+        } catch (error) {
+            console.error(error);
+            return {success:false};
+            
+        }
+
+    
+
+}
