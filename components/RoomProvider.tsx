@@ -10,6 +10,7 @@ import LiveCursorProvider from './LiveCursorProvider';
 
 
 
+
 function RoomProvider({roomId,children}:{
     roomId:string;
     children:React.ReactNode;
@@ -27,6 +28,7 @@ function RoomProvider({roomId,children}:{
       </LiveCursorProvider>
         
       </ClientSideSuspense>
+      
     </RoomProviderWrapper>
   )
 }
