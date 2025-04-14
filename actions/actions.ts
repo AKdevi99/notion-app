@@ -1,7 +1,10 @@
 'use server';
 
 import { adminDb } from "@/firebase-admin";
+import liveblocks from "@/lib/liveblocks";
 import { auth } from "@clerk/nextjs/server";
+import { backIn } from "framer-motion";
+import { Bath } from "lucide-react";
 
 
 export async function createNewDocument(){
@@ -28,4 +31,47 @@ export async function createNewDocument(){
     })
 
     return {docId:docRef.id}
+}
+
+
+export async function deleteDocument(roomId:string){
+    const {sessionClaims} = await auth();
+
+    if (!sessionClaims) {
+        throw new Error("Unauthorized");};
+    
+    console.log("deleteDocument",roomId);
+    
+    try {
+        //delete the document reference
+        await adminDb.collection("documents").doc(roomId).delete();
+
+        const query = await adminDb
+        .collectionGroup("rooms")
+        .where("roomId","==",roomId)
+        .get();
+
+
+        //delete the room reference in the user's collection for every user in the room
+        const batch = adminDb.batch();
+
+        query.docs.forEach((doc) =>{
+            batch.delete(doc.ref);
+        });
+
+        await batch.commit();
+
+        //delete room in liveblocks
+        await liveblocks.deleteRoom(roomId);
+
+        return {success:true};
+    
+
+        
+    } catch (error) {
+        console.error(error);
+        return {success:false};
+        
+    }
+
 }
