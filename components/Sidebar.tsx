@@ -91,7 +91,7 @@ export default function Sidebar() {
                 ))}
             </>
             )}
-           </div>
+
             {/* list */}
 
 
@@ -105,6 +105,8 @@ export default function Sidebar() {
                 </>
             )}
             {/* List .... */}
+           </div>
+            
         </>
     )
 

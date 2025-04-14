@@ -75,3 +75,34 @@ export async function deleteDocument(roomId:string){
     }
 
 }
+
+
+export async function inviteUserToDocument(roomId:string, email:string){
+    const {sessionClaims} = await auth();
+
+    if (!sessionClaims) {
+        throw new Error("Unauthorized");};
+    
+    console.log("inviteUserToDocument",roomId,email);
+    try {
+        await adminDb
+        .collection("users")
+        .doc(email)
+        .collection("rooms")
+        .doc(roomId)
+        .set({
+            userId:email,
+            role:"editor",
+            createdAt:new Date(),
+            roomId,
+        });
+
+        return {success:true}
+        
+    } catch (error) {
+        console.error(error);
+        return {success:false};
+        
+    }
+
+}

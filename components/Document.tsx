@@ -8,6 +8,7 @@ import Editor from './Editor';
 import useOwner from '@/lib/useOwner';
 
 import DeleteDocument from "./DeleteDocument";
+import InviteUser from './InviteUser';
 
 
 function Document({id}:{id:string}) {
@@ -52,12 +53,11 @@ function Document({id}:{id:string}) {
                     }
                 </Button>
 
-                {/* IF */}
                 {isOwner && (
                     <>
                     {/* Invite User */}
+                    <InviteUser/>
 
-                    {/* Delete doc */}
                     <DeleteDocument/>
 
                     </>
@@ -72,8 +72,6 @@ function Document({id}:{id:string}) {
         </div>
 
         <hr className='pb-10'/>
-
-      {/* collaborative editor */}
 
       <Editor/>
     </div>
