@@ -12,6 +12,7 @@ import stringToColor from '@/lib/stringToColor';
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/shadcn/style.css"
 import TranslateDocument from './TranslateDocument';
+import ChatToDocument from './ChatToDocument';
 
 
 
@@ -82,6 +83,7 @@ function Editor() {
             {/* translate Document */}
             <TranslateDocument doc={doc} />
             {/* chatToDocument */}
+            <ChatToDocument doc={doc}/>
 
 
             {/* dark mode */}
